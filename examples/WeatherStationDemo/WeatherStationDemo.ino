@@ -48,11 +48,11 @@ See more at https://thingpulse.com
  **************************/
 
 // WIFI
-const char* WIFI_SSID = "yourssid";
-const char* WIFI_PWD = "yourpassw0rd";
+const char* WIFI_SSID = "Quang";
+const char* WIFI_PWD = "quangquang94";
 
-#define TZ              2       // (utc+) TZ in hours
-#define DST_MN          60      // use 60mn for summer time in some countries
+#define TZ              7       // (utc+) TZ in hours
+#define DST_MN          0      // use 60mn for summer time in some countries
 
 // Setup
 const int UPDATE_INTERVAL_SECS = 20 * 60; // Update every 20 minutes
@@ -60,8 +60,8 @@ const int UPDATE_INTERVAL_SECS = 20 * 60; // Update every 20 minutes
 // Display Settings
 const int I2C_DISPLAY_ADDRESS = 0x3c;
 #if defined(ESP8266)
-const int SDA_PIN = D3;
-const int SDC_PIN = D4;
+const int SDA_PIN = D2;
+const int SDC_PIN = D1;
 #else
 const int SDA_PIN = 5; //D3;
 const int SDC_PIN = 4; //D4;
@@ -70,15 +70,15 @@ const int SDC_PIN = 4; //D4;
 
 // OpenWeatherMap Settings
 // Sign up here to get an API key:
-// https://docs.thingpulse.com/how-tos/openweathermap-key/
-String OPEN_WEATHER_MAP_APP_ID = "XXX";
+// https://docs.thingpulse.com/how-tos/openweathermap-key/ https://home.openweathermap.org/api_keys
+String OPEN_WEATHER_MAP_APP_ID = "7014155147c7e14f6ebab8abf61db507";
 /*
 Go to https://openweathermap.org/find?q= and search for a location. Go through the
 result set and select the entry closest to the actual location you want to display 
 data for. It'll be a URL like https://openweathermap.org/city/2657896. The number
 at the end is what you assign to the constant below.
  */
-String OPEN_WEATHER_MAP_LOCATION_ID = "2657896";
+String OPEN_WEATHER_MAP_LOCATION_ID = "1581130";
 
 // Pick a language code from this list:
 // Arabic - ar, Bulgarian - bg, Catalan - ca, Czech - cz, German - de, Greek - el,
@@ -88,7 +88,7 @@ String OPEN_WEATHER_MAP_LOCATION_ID = "2657896";
 // Portuguese - pt, Romanian - ro, Russian - ru, Swedish - se, Slovak - sk,
 // Slovenian - sl, Spanish - es, Turkish - tr, Ukrainian - ua, Vietnamese - vi,
 // Chinese Simplified - zh_cn, Chinese Traditional - zh_tw.
-String OPEN_WEATHER_MAP_LANGUAGE = "de";
+String OPEN_WEATHER_MAP_LANGUAGE = "en";
 const uint8_t MAX_FORECASTS = 4;
 
 const boolean IS_METRIC = true;
@@ -152,8 +152,8 @@ void setup() {
   display.init();
   display.clear();
   display.display();
-
-  //display.flipScreenVertically();
+//TO flip
+  display.flipScreenVertically();
   display.setFont(ArialMT_Plain_10);
   display.setTextAlignment(TEXT_ALIGN_CENTER);
   display.setContrast(255);
@@ -199,6 +199,7 @@ void setup() {
   // Inital UI takes care of initalising the display too.
   ui.init();
 
+  display.flipScreenVertically();
   Serial.println("");
 
   updateData(&display);
